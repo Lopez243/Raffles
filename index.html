@@ -1,29 +1,49 @@
-html
-
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Demostración de rifas.">
-  <title>Proyecto de rifas</title>
+  <meta name="description" content="Plataforma de sorteos en desarrollo.">
+  <title>Plataforma de sorteos</title>
   <link rel="stylesheet" href="./css/styles.css">
   <script type="module" src="./js/app.js"></script>
 </head>
 <body>
   <header class="site-header">
+    <nav class="top-actions" aria-label="Acciones principales">
+      <a
+        class="top-button support-button"
+        href="https://wa.me/57"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contactar soporte por WhatsApp"
+      >
+       <img src="./assets/whatsapp.svg" alt="" aria-hidden="true">
+        <span>Soporte</span>
+      </a>
+
+      <button
+        class="top-button tickets-button"
+        id="open-ticket-lookup"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="ticket-lookup"
+      >
+       <img src="./assets/ticket.svg" alt="" aria-hidden="true">
+        <span>Mis boletos</span>
+      </button>
+    </nav>
+
     <p class="eyebrow">PROYECTO EN DESARROLLO</p>
-    <h1>Plataforma de rifas</h1>
+    <h1>Plataforma de sorteos</h1>
     <p>Una base modular para aprender y construir paso a paso.</p>
   </header>
 
   <main class="container">
     <section class="notice" aria-labelledby="notice-title">
       <h2 id="notice-title">Modo de demostración</h2>
-      <p>
-        Los números que aparecen abajo son ejemplos.
-      </p>
+      <p>Los números que aparecen abajo son ejemplos.</p>
     </section>
 
     <section aria-labelledby="tickets-title">
@@ -35,9 +55,110 @@ html
     </section>
   </main>
 
+  <dialog
+    class="lookup-dialog"
+    id="ticket-lookup"
+    aria-labelledby="lookup-title"
+  >
+    <div class="lookup-content">
+      <h2 id="lookup-title">Consulta de boletos</h2>
+      <p class="lookup-description">
+        Ingresa el celular que registraste al reservar tus boletos.
+      </p>
+
+      <form id="ticket-lookup-form">
+        <label for="lookup-phone">TELÉFONO</label>
+
+        <div class="phone-field">
+          <span class="country-code" aria-label="Colombia, código +57">
+            🇨🇴 +57
+          </span>
+          <input
+            id="lookup-phone"
+            name="phone"
+            type="tel"
+            inputmode="numeric"
+            autocomplete="tel-national"
+            placeholder="300 123 4567"
+            pattern="[0-9 ]{10,14}"
+            minlength="10"
+            maxlength="14"
+            aria-describedby="phone-help"
+            required
+          >
+        </div>
+
+        <p class="field-help" id="phone-help">
+          Escribe los 10 dígitos de tu celular, sin +57.
+        </p>
+
+        <button class="lookup-submit" type="submit">
+          Consultar
+        </button>
+
+        <button
+          class="lookup-cancel"
+          id="close-ticket-lookup"
+          type="button"
+        >
+          Cancelar
+        </button>
+
+        <p
+          class="lookup-message"
+          id="lookup-message"
+          role="status"
+          aria-live="polite"
+        ></p>
+      </form>
+    </div>
+  </dialog>
+
   <footer class="site-footer">
     <p>Versión de desarrollo · Colombia</p>
     <p>Sin ventas, pagos ni reservas reales.</p>
   </footer>
+
+  <script>
+    const lookupDialog = document.getElementById("ticket-lookup");
+    const openLookupButton = document.getElementById("open-ticket-lookup");
+    const closeLookupButton = document.getElementById("close-ticket-lookup");
+    const lookupForm = document.getElementById("ticket-lookup-form");
+    const phoneInput = document.getElementById("lookup-phone");
+    const lookupMessage = document.getElementById("lookup-message");
+
+    openLookupButton.addEventListener("click", () => {
+      lookupMessage.textContent = "";
+      lookupForm.reset();
+      lookupDialog.showModal();
+      phoneInput.focus();
+    });
+
+    closeLookupButton.addEventListener("click", () => {
+      lookupDialog.close();
+    });
+
+    lookupDialog.addEventListener("click", (event) => {
+      if (event.target === lookupDialog) {
+        lookupDialog.close();
+      }
+    });
+
+    lookupForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const phone = phoneInput.value.replace(/\s/g, "");
+
+      if (!/^3[0-9]{9}$/.test(phone)) {
+        lookupMessage.textContent =
+          "Ingresa un número celular colombiano válido de 10 dígitos.";
+        return;
+      }
+
+      lookupMessage.textContent =
+        "La consulta de reservas estará disponible cuando conectemos la base de datos.";
+    });
+  </script>
 </body>
 </html>
+
