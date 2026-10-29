@@ -1,0 +1,82 @@
+
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #262626;
+  background: #f5f1eb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 280px;
+}
+
+.site-header {
+  padding: 40px 20px;
+  text-align: center;
+  color: #ffffff;
+  background: #84202b;
+}
+
+.site-header h1 {
+  margin: 8px 0;
+  font-size: clamp(1.8rem, 6vw, 2.7rem);
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.container {
+  width: min(100% - 32px, 760px);
+  margin: 28px auto;
+}
+
+.notice {
+  padding: 18px;
+  border: 1px solid #e5cf91;
+  border-radius: 12px;
+  background: #fff7df;
+}
+
+.notice h2 {
+  margin-top: 0;
+}
+
+.ticket-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.ticket {
+  padding: 14px 4px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  border: 1px solid #d9d2c8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.site-footer {
+  padding: 20px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #666666;
+}
+
+@media (max-width: 380px) {
+  .ticket-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
