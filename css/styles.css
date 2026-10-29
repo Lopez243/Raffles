@@ -85,4 +85,39 @@ body {
   .ticket-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+  
+/* Fondo desenfocado al abrir la consulta de boletos */
+#ticket-lookup::backdrop {
+  background: rgba(10, 20, 35, 0.58);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+/* El cuadro de consulta queda por encima del fondo */
+#ticket-lookup {
+  border: none;
+  border-radius: 18px;
+  padding: 24px;
+  width: min(90%, 420px);
+  max-width: 420px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* Entrada suave del cuadro */
+#ticket-lookup[open] {
+  animation: ticket-appear 0.22s ease-out;
+}
+
+@keyframes ticket-appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+  
 }
