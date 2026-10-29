@@ -74,7 +74,13 @@ body {
   font-size: 0.85rem;
   color: #666666;
 }
-
+.top-button img {
+  display: block;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
 @media (max-width: 380px) {
   .ticket-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
