@@ -12,7 +12,7 @@ function initializeApp() {
 
   try {
     renderTicketGrid(grid, 20);
-    status.textContent = "Demostración cargada: 20 números de ejemplo.";
+    status.textContent = "Demostración cargada: 100 números de ejemplo.";
   } catch (error) {
     console.error("No fue posible cargar la demostración.", error);
     status.textContent = "No se pudo cargar la demostración.";
