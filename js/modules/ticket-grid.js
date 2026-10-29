@@ -1,5 +1,5 @@
 
-export function renderTicketGrid(container, count = 20) {
+export function renderTicketGrid(container, count = 100) {
   if (!(container instanceof HTMLElement)) {
     throw new TypeError("Se necesita un contenedor HTML válido.");
   }
@@ -10,7 +10,7 @@ export function renderTicketGrid(container, count = 20) {
 
   const fragment = document.createDocumentFragment();
 
-  for (let number = 1; number <= count; number += 1) {
+  for (let number = 0; number <= count; number += 1) {
     const ticket = document.createElement("div");
 
     ticket.className = "ticket";
