@@ -10,7 +10,8 @@ export function renderTicketGrid(container, count = 100) {
 
   const fragment = document.createDocumentFragment();
 
-  for (let number = 0; number <= count; number += 1) {
+  // Genera 100 números exactos desde el 0 (que será "00") hasta el 99
+  for (let number = 0; number < count; number += 1) {
     const ticket = document.createElement("div");
 
     ticket.className = "ticket";
